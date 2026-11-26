@@ -1,25 +1,16 @@
+using System.Xml.Serialization;
 using UnityEngine;
 
 public class TriggerDialog : MonoBehaviour
 {
-    public Canvas dialogCanvas;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    public GameManagement manager;
+    public Choice c;
 
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == "Player")
         {
-            dialogCanvas.gameObject.SetActive(true);
+            manager.displayChoiceUI(c);
         }
     }
 }
