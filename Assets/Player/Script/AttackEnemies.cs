@@ -11,6 +11,11 @@ public class AttackEnemies : MonoBehaviour
         collidingEnemies = new List<Collider>();
     }
 
+    void Hurt()
+    {
+        health -= 1;
+    }
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -18,11 +23,9 @@ public class AttackEnemies : MonoBehaviour
             for (int i = 0; i < collidingEnemies.Count; i++)
             {
                 Collider enem = collidingEnemies[i];
-                Debug.Log("dealing damage to " + " " + enem.gameObject.name);
                 if (!enem.gameObject.GetComponent<AiEnemy>().TakeDamage())
                 {
                     collidingEnemies.RemoveAt(i);
-                    Debug.Log("removing enemy after kill" + " " + enem.gameObject.name);
                     continue;
                 }
             }
@@ -34,7 +37,6 @@ public class AttackEnemies : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             collidingEnemies.Add(other);
-            Debug.Log("adding enemy " + " " + other.gameObject.name);
         }
     }
 
@@ -43,7 +45,6 @@ public class AttackEnemies : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             collidingEnemies.Remove(other);
-            Debug.Log("removing enemy " + " " + other.gameObject.name);
         }
     }
 }
